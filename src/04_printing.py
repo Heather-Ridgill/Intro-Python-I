@@ -16,4 +16,3 @@ z = "I like turtles!"
 
 # Finally, print the same thing using an f-string
 
-print(f {x + y + z})
