@@ -30,3 +30,78 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+print(calendar.weekheader(3))
+print()
+
+
+
+# calendar.setfirstweekday(calendar.Sunday)
+
+print(calendar.firstweekday())
+print()
+
+print(calendar.month(2020,5))
+
+print(calendar.monthcalendar(2020, 5))
+
+print(calendar.calendar(2020))
+
+#0-Mon 1-Tues 2-Weds 3-Thurs 4-Fri 5-Sat 6-Sun
+day_of_the_week = calendar.weekday(2020, 5, 11)
+print(day_of_the_week)
+
+# So you can see if a year is a leap year
+is_leap = calendar.isleap(2020)
+print(is_leap)
+
+how_many_leap_Days = calendar.leapdays(2000,2021)
+print(how_many_leap_Days)
+
+# You have to make sure that the user doesnt enter a number higher than the number of months in a year (12, duh!)
+
+inputs = sys.argv
+
+def check_month_input(monthNum):
+    try:
+        monthNum = int(monthNum)
+    except:
+        print("Invalid string type for year input: please enter a number between 1-12")
+        return
+    else:
+        if monthNum < 0:
+            print('Invalid year input: please enter a number between 1-12')
+            return
+        else:
+            return monthNum
+    
+  # Year format
+
+def check_year_input(yearNum):
+    try:
+        yearNum = int(yearNum)
+    except:
+        print("Invalid string type for year input - please only use numbers for year in format YYYY.")
+        return
+    else:
+        if yearNum < 0:
+            print('Invalid year input - please dont use negative numbers for years.')
+            return
+        else:
+            return yearNum
+
+  
+if len(inputs) == 1:
+    month = datetime.today().month	    
+    year = datetime.today().year	   
+    print(calendar.month(year, month))	    
+elif len(inputs) == 2:	
+    month = check_month_input(inputs[1])	    
+    year = datetime.today().year	    
+    if type(month) == int:	    
+        print(calendar.month(year, month))	        
+elif len(inputs) == 3:
+    month = check_month_input(inputs[1])
+    year = check_year_input(inputs[2])
+    if type(year) == int and type(month) == int:
+        print(calendar.month(year, month)) 
